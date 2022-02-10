@@ -26,6 +26,12 @@
         <h3><%= post.title %></h3>
         <p><%= post.user.email %></p>
         <p><%= post.content %></p>
+        <p>
+          <form action="/delete" method="post">
+            <input type="hidden" name="postId" value="<%= post.id %>" />
+            <input type="submit" value="delete" />
+          </form>
+        </p>
       <% }) %>
     <% } else { %>
       <p>No posts</p>

@@ -54,4 +54,20 @@ app.post("/", async (req, res) => {
 	}
 });
 
+app.post("/delete", async (req, res) => {
+	try{
+		const postToDeleteId = req.body.postId;
+		await prisma.post.delete({
+			where: {
+				id: parseInt(postToDeleteId)
+			}
+		})
+
+		res.redirect("/?message=" + "post was delted successfully")
+	} catch(err) {
+		console.log(err)
+		res.redirect("/?message=" + "post could not be deleted")
+	}
+})
+
 app.listen(3000, () => console.log("server listening on port 3000"));
